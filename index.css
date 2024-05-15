@@ -1,2 +1,33 @@
+#name,
+#weather-picture {
+  background-color: rgb(182, 217, 248);
+  font-size: 3rem;
+  font-style: italic;
+  margin: 0;
+  padding: 20px;
+  display: flexbox;
+  text-align: center;
+}
 
-
+#weather-picture {
+  height: auto;
+  object-fit: fill;
+  align-items: self-end;
+  margin: 0;
+}
+h2 {
+  color: darkblue;
+  font-display: inherit;
+  display: flex;
+  flex-direction: column;
+}
+#temperature {
+  background-color: beige;
+  margin: 0;
+  padding: 8px;
+}
+#showers {
+  background-color: rgb(240, 237, 237);
+  margin: 0;
+  padding: 8px;
+}
