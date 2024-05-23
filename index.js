@@ -5,11 +5,10 @@ const currentTemperatureElement = document.getElementById(
   "current-temperature"
 );
 const currentWindSpeedElement = document.getElementById("current-windspeed");
-const hourlyWindSpeedElement = document.getElementById("hourly-windspeed");
-
-const hourlyTemperature = document.getElementById("hourly-temperature");
-console.log(hourlyWindSpeedElement);
-console.log(hourlyTemperature);
+const fullForecastElement = document.getElementById("full-forecast");
+const currentForecastElement = document.getElementById("current-forecast");
+const tableBodyElement = document.getElementsByTagName("tbody")[0];
+console.log(tableBodyElement);
 
 function getFullForecast() {
   const latitude = latitudeEl.value;
@@ -28,19 +27,13 @@ function getFullForecast() {
       return res.json();
     })
     .then((data) => {
-      hourlyTemperature.innerHTML = "";
-      currentTemperatureElement.innerHTML = "";
-      hourlyWindSpeedElement.innerHTML = "";
-      currentWindSpeedElement.innerHTML = "";
+      currentForecastElement.style.display = "none";
+      fullForecastElement.style.display = "block";
+      tableBodyElement.innerHTML = "";
       console.log(data);
       const temperatures = data.hourly.temperature_2m;
       const windspeeds = data.hourly.wind_speed_10m;
-      /*for (let i = 0; i < temperatures.length; i++) {
-            const time = data.hourly.time[i];
-            const li = document.createElement("li");
-            li.innerText = time + " - " + temperatures[i];
-            hourlyTemperature.appendChild(li);
-            }*/
+
       let currentDate = "";
       let currentLow = 0;
       let currentHigh = 0;
@@ -66,24 +59,20 @@ function getFullForecast() {
           }
         } else {
           if (i != 0) {
-            const li = document.createElement("li");
-            li.innerText =
-              "Date :" +
-              currentDate +
-              " High :" +
-              currentHigh +
-              " Low :" +
-              currentLow;
-            hourlyTemperature.appendChild(li);
-            const li2 = document.createElement("li");
-            li2.innerText =
-              "Date :" +
-              currentDate +
-              " High Wind :" +
-              curentWindSpeedHigh +
-              " Low  Wind:" +
-              currentWindSpeedLow;
-            hourlyWindSpeedElement.appendChild(li2);
+            const tr = document.createElement("tr");
+            const tdDate = document.createElement("td");
+            tdDate.innerText = currentDate;
+            const tdTemperature = document.createElement("td");
+
+            tdTemperature.innerText = currentHigh + " / " + currentLow;
+
+            const tdWindSpeed = document.createElement("td");
+            tdWindSpeed.innerText =
+              curentWindSpeedHigh + " / " + currentWindSpeedLow;
+            tr.appendChild(tdDate);
+            tr.appendChild(tdTemperature);
+            tr.appendChild(tdWindSpeed);
+            tableBodyElement.appendChild(tr);
           }
           currentDate = date;
           currentLow = temperatures[i];
@@ -117,10 +106,11 @@ function getCurrentForecast() {
       return res.json();
     })
     .then((data) => {
-      hourlyTemperature.innerHTML = "";
+      fullForecastElement.style.display = "none";
+      currentForecastElement.style.display = "block";
       currentTemperatureElement.innerHTML = "";
       currentWindSpeedElement.innerHTML = "";
-      hourlyWindSpeedElement.innerHTML = "";
+
       const temperature = data.current.temperature_2m;
       const windspeed = data.current.wind_speed_10m;
       currentTemperatureElement.innerText = temperature + "°C";

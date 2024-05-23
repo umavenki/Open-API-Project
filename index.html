@@ -13,67 +13,68 @@
   </head>
 
   <body>
-    <section id="weather-picture">
-      <img src="Image/weather-icon.svg" />
-    </section>
-
-    <section id="name">
+    <section id="hero">
+      <img src="Image/weather-icon.svg" alt="weather icon" />
       <h1>Weather Report</h1>
     </section>
 
-    <section id="current weather">
-      <h2>Current Weather</h2>
-      <label for="latname">Latitude:</label>
-      <input type="text" id="latname" name="latname" />
-      <label for="logname">Longitude:</label>
-      <input type="text" id="logname" name="logname" />
-      <button id="fetchCurrentForecast" onclick="getCurrentForecast()">
-        Current Forecast
-      </button>
-      <button id="fetchFullForecast" onclick="getFullForecast()">
-        Full Forecast
-      </button>
-    </section>
-
-    <section id="forecast">
-      <h2>Full Forecast</h2>
-      <div id="weather-data">
-        <table>
-          <tr>
-            <th>Date</th>
-            <th>
-              Temperature °C <br />
-              (High/Low)
-            </th>
-            <th>
-              Wind Speed km/h <br />
-              (High/Low)
-            </th>
-          </tr>
-          <tr>
-            <td>2024-05-11</td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>2024-05-12</td>
-            <td>20/12</td>
-            <td>16/8</td>
-          </tr>
-        </table>
+    <section id="get-forecast">
+      <h2>Get Forecast</h2>
+      <div class="inputs">
+        <div>
+          <label for="latname">Latitude:</label>
+          <input type="text" id="latname" name="latname" />
+        </div>
+        <div>
+          <label for="logname">Longitude:</label>
+          <input type="text" id="logname" name="logname" />
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="fetchCurrentForecast" onclick="getCurrentForecast()">
+          Current Forecast
+        </button>
+        <button id="fetchFullForecast" onclick="getFullForecast()">
+          Full Forecast
+        </button>
       </div>
     </section>
 
-    <section id="temperature">
-      <h2>Temperature:</h2>
-      <div id="current-temperature"></div>
-      <ul id="hourly-temperature"></ul>
-    </section>
-
-    <section id="wind-speed">
-      <h2>Wind Speed:</h2>
-      <div id="current-windspeed"></div>
-      <ul id="hourly-windspeed"></ul>
-    </section>
+    <div class="forecast">
+      <section id="full-forecast">
+        <h2>Full Forecast</h2>
+        <div id="weather-data">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>
+                  Temperature °C <br />
+                  (High/Low)
+                </th>
+                <th>
+                  Wind Speed km/h <br />
+                  (High/Low)
+                </th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      <section id="current-forecast">
+        <h2>Current Forecast</h2>
+        <section id="temperature">
+          <h3>Temperature:</h3>
+          <div id="current-temperature"></div>
+          <ul id="hourly-temperature"></ul>
+        </section>
+        <section id="wind-speed">
+          <h3>Wind Speed:</h3>
+          <div id="current-windspeed"></div>
+          <ul id="hourly-windspeed"></ul>
+        </section>
+      </section>
+    </div>
   </body>
 </html>
